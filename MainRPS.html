@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="RPS.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Lobster" rel="stylesheet">
+	<link rel="icon" href="favicon.ico">
+	<title>Rock, Paper, Scorsese</title>
+</head>
+
+
+<body>
+	<h1>Rock, Paper, Scorsese</h1>
+	<h4 id='instruction-words'>Choose your weapon:</h4>
+	<h5 id='comp-choice'>Computer Chose:</h5>
+
+
+<!-- ScoreBoard -->
+	<div id="scoreboard">
+			
+			<div id ="board-graphic">
+				<img src="Scoreboard.png" id="ScoreboardGraphic"/>
+			</div>
+
+			<div id ="static-reset-button">
+				<img src="StaticReset.png" id="StaticReset"/>
+			</div>
+
+			<div id ="clicked-reset-button">
+				<img src="PressedReset.png" id="PressedReset"/>
+			</div>
+
+			<p id ="player-score"> 0
+			</p>
+
+			<p id ="computer-score"> 0
+			</p>
+
+			<p id ="tie-score"> 0
+			</p>
+
+
+	</div>		
+
+
+<!-- Win/Loss/Draw -->
+	<div class ="win-loss-draw">
+		<p id ="win-text"> Win! </p>
+		<p id ="loss-text"> Loss </p>
+		<p id ="draw-text"> Draw </p>
+	</div>
+
+<!-- User Icon Divs -->
+	<div id="user-icon-choices">
+			
+		<!--SCORSESE IMAGES  -->	
+		<div id="scorsese-icons">
+			<div id ="scorsese-static">
+				<img src="NoShadowScorsese.png" id="scorsese-static-image"/>
+			</div>
+			
+			<div id="scorsese-hover">
+				<img src="HoverScorsese.png" id="scorsese-hover-image"/>
+			</div>
+
+			<div id="scorsese-click">
+				<img src="ClickScorsese.png" id="scorsese-click-image"/>
+			</div>
+
+			<audio id="scorsese-sound" src="ScorseseLaugh.m4a">
+			</audio>
+		</div>
+
+		<!--PAPER IMAGES  -->
+		<div id = "paper-icons">
+			<div id ="paper-static">
+				<img src="StaticPaper.png" id="paper-static-image"/>
+			</div>
+			
+			<div id="paper-hover">
+				<img src="HoverPaper.png" id="paper-hover-image"/>
+			</div>
+
+			<div id="paper-click">
+				<img src="ClickPaper.png" id="paper-click-image"/>
+			</div>
+
+			<audio id="paper-hover-sound" src="PaperHover.m4a">
+			</audio>
+		</div>
+
+		<!--ROCK IMAGES  -->
+		<div id = "rock-icons">
+			<div id ="rock-static">
+				<img src="StaticRock.png" id="rock-static-image"/>
+			</div>
+			
+			<div id="rock-hover">
+				<img src="HoverRock.png" id="rock-hover-image"/>
+			</div>
+
+			<div id="rock-click">
+				<img src="ClickRock.png" id="rock-click-image"/>
+			</div>
+
+			<audio id="rock-hover-sound" src="RockHover.m4a">
+			</audio>
+		</div>
+	</div>
+
+<!-- Computer Choice Icons -->
+	<div class ="computer-choice-icons">
+		<div class ="comp-rock-icon"> 
+			<img src="HoverRock.png" id="comp-rock-image"/>
+		</div>
+		
+		<div class ="comp-paper-icon"> 
+			<img src="HoverPaper.png" id="comp-paper-image"/>
+		</div>
+		
+		<div class ="comp-scorsese-icon"> 
+			<img src="HoverScorsese.png" id="comp-scorsese-image"/>
+		</div>
+	</div>	
+
+
+</body>
+
+<script>
+
+//variables
+
+
+let playerScore = 0;
+let compScore = 0;
+let ties = 0;
+let userChoice = " ";
+
+// document.getElementById("player-score").innerHTML = playerScore
+// document.getElementById("computer-score").innerHTML = compScore
+// document.getElementById("tie-score").innerHTML = ties
+// <!-- Scorsese Event Listeners -->
+
+
+const staticScorsese = document.getElementById("scorsese-static");
+const hoverScorsese = document.getElementById("scorsese-hover");
+const clickScorsese = document.getElementById("scorsese-click");
+const soundScorsese = document.getElementById("scorsese-sound");
+const compRock = document.getElementById("comp-rock-image");
+const compPaper = document.getElementById("comp-paper-image");
+const compScorsese = document.getElementById("comp-scorsese-image");
+const staticReset = document.getElementById("static-reset-button");
+const clickedReset = document.getElementById("clicked-reset-button");
+
+const playerScoreCount = document.getElementById("player-score");
+const computerScoreCount = document.getElementById("computer-score");
+const tieScoreCount = document.getElementById("tie-score");
+
+const winText = document.getElementById("win-text");
+const lossText = document.getElementById("loss-text");
+const drawText = document.getElementById("draw-text");
+
+// let tieScoreCount = ties;
+// let computerScoreCount = compScore;
+// let playerScoreCount = playerScore;
+
+
+staticReset.onmousedown = function(){
+	staticReset.style.display = "none";
+	clickedReset.style.display = "block";
+	playerScore = 0;
+	compScore = 0;
+	ties = 0;
+	tieScoreCount.innerHTML = ties;
+	playerScoreCount.innerHTML = playerScore;
+	computerScoreCount.innerHTML = compScore;
+	userChoice = " "
+	hoverScorsese.style.display = "none";
+  	staticScorsese.style.display = "block";
+  	clickScorsese.style.display = "none";
+  	hoverPaper.style.display = "none";
+  	staticPaper.style.display = "block";
+  	clickPaper.style.display = "none";
+  	hoverRock.style.display = "none";
+  	staticRock.style.display = "block";
+  	clickRock.style.display = "none";
+  	compRock.style.display = "none";
+	compPaper.style.display = "none";
+	compScorsese.style.display = "none";
+	winText.style.display = "none";
+	lossText.style.display = "none";
+	drawText.style.display = "none";
+
+}
+
+clickedReset.onmouseup = function(){
+	staticReset.style.display = "block";
+	clickedReset.style.display = "none";
+}
+
+staticScorsese.onmouseover = function(){
+  hoverScorsese.style.display = "block";
+  staticScorsese.style.display = "none";
+}
+
+hoverScorsese.onmouseover = function(){
+  hoverScorsese.style.display = "block";
+  staticScorsese.style.display = "none";
+  soundScorsese.play();
+}
+
+staticScorsese.onmouseout = function(){
+  hoverScorsese.style.display = "none";
+  staticScorsese.style.display = "block";
+}
+
+hoverScorsese.onmouseout = function(){
+  hoverScorsese.style.display = "none";
+  staticScorsese.style.display = "block";
+  soundScorsese.pause();
+  soundScorsese.currentTime = 0;
+}
+
+hoverScorsese.onmousedown = function(){
+  	hoverScorsese.style.display = "none";
+  	staticScorsese.style.display = "none";
+  	clickScorsese.style.display = "block";
+  	hoverPaper.style.display = "none";
+  	staticPaper.style.display = "block";
+  	clickPaper.style.display = "none";
+  	hoverRock.style.display = "none";
+  	staticRock.style.display = "block";
+  	clickRock.style.display = "none";
+	userChoice = 3
+
+		let compChoice = Math.floor(Math.random() * 3) + 1;
+		
+			if (compChoice = 1) {
+				console.log("Comp chose rock - you lose")
+				compRock.style.display = "block";
+				compPaper.style.display = "none";
+				compScorsese.style.display = "none";
+				compScore++;
+				computerScoreCount.innerHTML = compScore;
+				console.log(`${compScore}`);
+				winText.style.display = "none";
+				lossText.style.display = "block";
+				drawText.style.display = "none";
+
+			} else if (compChoice = 2) {
+				console.log("Comp chose paper - you win")
+				compRock.style.display = "none";
+				compPaper.style.display = "block";
+				compScorsese.style.display = "none";
+				playerScore++;
+				playerScoreCount.innerHTML = playerScore;
+				console.log(`${playerScore}`);
+				winText.style.display = "block";
+				lossText.style.display = "none";
+				drawText.style.display = "none";
+
+			} else if (compChoice = 3) {
+				console.log("Comp chose Scorsese - you tie")
+				compRock.style.display = "none";
+				compPaper.style.display = "none";
+				compScorsese.style.display = "block";
+				ties++;
+				tieScoreCount.innerHTML = ties;
+				console.log(`${ties}`);
+				winText.style.display = "none";
+				lossText.style.display = "none";
+				drawText.style.display = "block";
+			}
+	}
+
+
+// Paper Event Listeners
+
+const staticPaper = document.getElementById("paper-static"), hoverPaper = document.getElementById("paper-hover"), clickPaper = document.getElementById("paper-click");
+const hoverPaperSound = document.getElementById("paper-hover-sound")
+
+staticPaper.onmouseover = function(){
+  hoverPaper.style.display = "block";
+  staticPaper.style.display = "none";
+}
+
+hoverPaper.onmouseover = function(){
+  hoverPaper.style.display = "block";
+  staticPaper.style.display = "none";
+  hoverPaperSound.play();
+}
+
+staticPaper.onmouseout = function(){
+  hoverPaper.style.display = "none";
+  staticPaper.style.display = "block";
+}
+
+hoverPaper.onmouseout = function(){
+  hoverPaper.style.display = "none";
+  staticPaper.style.display = "block";
+  hoverPaperSound.pause();
+  hoverPaperSound.currentTime = 0;
+}
+
+hoverPaper.onmousedown = function(){
+  hoverPaper.style.display = "none";
+  staticPaper.style.display = "none";
+  clickPaper.style.display = "block";
+  hoverRock.style.display = "none";
+  staticRock.style.display = "block";
+  clickRock.style.display = "none";
+  hoverScorsese.style.display = "none";
+  staticScorsese.style.display = "block";
+  clickScorsese.style.display = "none";
+  userChoice = 2
+		
+		let compChoice = Math.floor(Math.random() * 3) + 1;
+			if (compChoice == 1) {
+				console.log("Comp chose rock - you win")
+				compRock.style.display = "block";
+				compPaper.style.display = "none";
+				compScorsese.style.display = "none";
+				playerScore++;
+				playerScoreCount.innerHTML = playerScore;
+				console.log(`${playerScore}`);
+				winText.style.display = "block";
+				lossText.style.display = "none";
+				drawText.style.display = "none";
+
+			} else if (compChoice == 2) {
+				console.log("Comp chose paper - you tie")
+				compRock.style.display = "none";
+				compPaper.style.display = "block";
+				compScorsese.style.display = "none";
+				ties++;
+				tieScoreCount.innerHTML = ties;
+				console.log(`${ties}`); 
+				winText.style.display = "none";
+				lossText.style.display = "none";
+				drawText.style.display = "block";
+
+			} else if (compChoice == 3) {
+				console.log("Comp chose Scorsese - you lose")
+				compRock.style.display = "none";
+				compPaper.style.display = "none";
+				compScorsese.style.display = "block";
+				compScore++;
+				computerScoreCount.innerHTML = compScore;
+				console.log(`${compScore}`);
+				winText.style.display = "none";
+				lossText.style.display = "block";
+				drawText.style.display = "none";
+			}
+
+}
+
+
+
+// Rock Event Listeners
+const staticRock = document.getElementById("rock-static"), hoverRock = document.getElementById("rock-hover"), clickRock = document.getElementById("rock-click");
+const hoverRockSound = document.getElementById("rock-hover-sound")
+
+staticRock.onmouseover = function(){
+  hoverRock.style.display = "block";
+  staticRock.style.display = "none";
+}
+
+hoverRock.onmouseover = function(){
+  hoverRock.style.display = "block";
+  staticRock.style.display = "none";
+  hoverRockSound.play();
+}
+
+staticRock.onmouseout = function(){
+  hoverRock.style.display = "none";
+  staticRock.style.display = "block";
+}
+
+hoverRock.onmouseout = function(){
+  hoverRock.style.display = "none";
+  staticRock.style.display = "block";
+  hoverRockSound.pause();
+  hoverRockSound.currentTime = 0;
+}
+
+hoverRock.onmousedown = function(){
+  hoverRock.style.display = "none";
+  staticRock.style.display = "none";
+  clickRock.style.display = "block";
+  hoverPaper.style.display = "none";
+  staticPaper.style.display = "block";
+  clickPaper.style.display = "none";
+  hoverScorsese.style.display = "none";
+  staticScorsese.style.display = "block";
+  clickScorsese.style.display = "none";
+  userChoice = 1
+		let compChoice = Math.floor(Math.random() * 3) + 1;
+			if (compChoice == 1) {
+				console.log("Comp chose rock - you tie")
+				compRock.style.display = "block";
+				compPaper.style.display = "none";
+				compScorsese.style.display = "none";
+				ties++;
+				tieScoreCount.innerHTML = ties;
+				console.log(`${ties}`);
+				winText.style.display = "none";
+				lossText.style.display = "none";
+				drawText.style.display = "block";
+
+			} else if (compChoice == 2) {
+				console.log("Comp chose paper - you lose")
+				compRock.style.display = "none";
+				compPaper.style.display = "block";
+				compScorsese.style.display = "none";
+				compScore++;
+				computerScoreCount.innerHTML = compScore;
+				console.log(`${compScore}`);
+				winText.style.display = "none";
+				lossText.style.display = "block";
+				drawText.style.display = "none";
+
+			} else if (compChoice == 3) {
+				console.log("Comp chose Scorsese - you win")
+				compRock.style.display = "none";
+				compPaper.style.display = "none";
+				compScorsese.style.display = "block";
+				playerScore++;
+				playerScoreCount.innerHTML = playerScore;
+				console.log(`${playerScore}`);
+				winText.style.display = "block";
+				lossText.style.display = "none";
+				drawText.style.display = "none";
+
+			}
+}
+
+
+
+
+</script>
+
+
+</html>
