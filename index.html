@@ -1,443 +1,189 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-	<link rel="stylesheet" href="RPS.css"/>
-	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Lobster" rel="stylesheet">
-	<link rel="icon" href="favicon.ico">
-	<title>Rock, Paper, Scorsese</title>
-</head>
-
-
-<body>
-	<h1>Rock, Paper, Scorsese</h1>
-	<h4 id='instruction-words'>Choose your weapon:</h4>
-	<h5 id='comp-choice'>Computer Chose:</h5>
-
-
-<!-- ScoreBoard -->
-	<div id="scoreboard">
-			
-			<div id ="board-graphic">
-				<img src="Scoreboard.png" id="ScoreboardGraphic"/>
-			</div>
-
-			<div id ="static-reset-button">
-				<img src="StaticReset.png" id="StaticReset"/>
-			</div>
-
-			<div id ="clicked-reset-button">
-				<img src="PressedReset.png" id="PressedReset"/>
-			</div>
-
-			<p id ="player-score"> 0
-			</p>
-
-			<p id ="computer-score"> 0
-			</p>
-
-			<p id ="tie-score"> 0
-			</p>
-
-
-	</div>		
-
-
-<!-- Win/Loss/Draw -->
-	<div class ="win-loss-draw">
-		<p id ="win-text"> Win! </p>
-		<p id ="loss-text"> Loss </p>
-		<p id ="draw-text"> Draw </p>
-	</div>
-
-<!-- User Icon Divs -->
-	<div id="user-icon-choices">
-			
-		<!--SCORSESE IMAGES  -->	
-		<div id="scorsese-icons">
-			<div id ="scorsese-static">
-				<img src="NoShadowScorsese.png" id="scorsese-static-image"/>
-			</div>
-			
-			<div id="scorsese-hover">
-				<img src="HoverScorsese.png" id="scorsese-hover-image"/>
-			</div>
-
-			<div id="scorsese-click">
-				<img src="ClickScorsese.png" id="scorsese-click-image"/>
-			</div>
-
-			<audio id="scorsese-sound" src="ScorseseLaugh.m4a">
-			</audio>
-		</div>
-
-		<!--PAPER IMAGES  -->
-		<div id = "paper-icons">
-			<div id ="paper-static">
-				<img src="StaticPaper.png" id="paper-static-image"/>
-			</div>
-			
-			<div id="paper-hover">
-				<img src="HoverPaper.png" id="paper-hover-image"/>
-			</div>
-
-			<div id="paper-click">
-				<img src="ClickPaper.png" id="paper-click-image"/>
-			</div>
-
-			<audio id="paper-hover-sound" src="PaperHover.m4a">
-			</audio>
-		</div>
-
-		<!--ROCK IMAGES  -->
-		<div id = "rock-icons">
-			<div id ="rock-static">
-				<img src="StaticRock.png" id="rock-static-image"/>
-			</div>
-			
-			<div id="rock-hover">
-				<img src="HoverRock.png" id="rock-hover-image"/>
-			</div>
-
-			<div id="rock-click">
-				<img src="ClickRock.png" id="rock-click-image"/>
-			</div>
-
-			<audio id="rock-hover-sound" src="RockHover.m4a">
-			</audio>
-		</div>
-	</div>
-
-<!-- Computer Choice Icons -->
-	<div class ="computer-choice-icons">
-		<div class ="comp-rock-icon"> 
-			<img src="HoverRock.png" id="comp-rock-image"/>
-		</div>
-		
-		<div class ="comp-paper-icon"> 
-			<img src="HoverPaper.png" id="comp-paper-image"/>
-		</div>
-		
-		<div class ="comp-scorsese-icon"> 
-			<img src="HoverScorsese.png" id="comp-scorsese-image"/>
-		</div>
-	</div>	
-
-
-</body>
-
-<script>
-
-//variables
-
-
-let playerScore = 0;
-let compScore = 0;
-let ties = 0;
-let userChoice = " ";
-
-// document.getElementById("player-score").innerHTML = playerScore
-// document.getElementById("computer-score").innerHTML = compScore
-// document.getElementById("tie-score").innerHTML = ties
-// <!-- Scorsese Event Listeners -->
-
-
-const staticScorsese = document.getElementById("scorsese-static");
-const hoverScorsese = document.getElementById("scorsese-hover");
-const clickScorsese = document.getElementById("scorsese-click");
-const soundScorsese = document.getElementById("scorsese-sound");
-const compRock = document.getElementById("comp-rock-image");
-const compPaper = document.getElementById("comp-paper-image");
-const compScorsese = document.getElementById("comp-scorsese-image");
-const staticReset = document.getElementById("static-reset-button");
-const clickedReset = document.getElementById("clicked-reset-button");
-
-const playerScoreCount = document.getElementById("player-score");
-const computerScoreCount = document.getElementById("computer-score");
-const tieScoreCount = document.getElementById("tie-score");
-
-const winText = document.getElementById("win-text");
-const lossText = document.getElementById("loss-text");
-const drawText = document.getElementById("draw-text");
-
-// let tieScoreCount = ties;
-// let computerScoreCount = compScore;
-// let playerScoreCount = playerScore;
-
-
-staticReset.onmousedown = function(){
-	staticReset.style.display = "none";
-	clickedReset.style.display = "block";
-	playerScore = 0;
-	compScore = 0;
-	ties = 0;
-	tieScoreCount.innerHTML = ties;
-	playerScoreCount.innerHTML = playerScore;
-	computerScoreCount.innerHTML = compScore;
-	userChoice = " "
-	hoverScorsese.style.display = "none";
-  	staticScorsese.style.display = "block";
-  	clickScorsese.style.display = "none";
-  	hoverPaper.style.display = "none";
-  	staticPaper.style.display = "block";
-  	clickPaper.style.display = "none";
-  	hoverRock.style.display = "none";
-  	staticRock.style.display = "block";
-  	clickRock.style.display = "none";
-  	compRock.style.display = "none";
-	compPaper.style.display = "none";
-	compScorsese.style.display = "none";
-	winText.style.display = "none";
-	lossText.style.display = "none";
-	drawText.style.display = "none";
-
-}
-
-clickedReset.onmouseup = function(){
-	staticReset.style.display = "block";
-	clickedReset.style.display = "none";
-}
-
-staticScorsese.onmouseover = function(){
-  hoverScorsese.style.display = "block";
-  staticScorsese.style.display = "none";
-}
-
-hoverScorsese.onmouseover = function(){
-  hoverScorsese.style.display = "block";
-  staticScorsese.style.display = "none";
-  soundScorsese.play();
-}
-
-staticScorsese.onmouseout = function(){
-  hoverScorsese.style.display = "none";
-  staticScorsese.style.display = "block";
-}
-
-hoverScorsese.onmouseout = function(){
-  hoverScorsese.style.display = "none";
-  staticScorsese.style.display = "block";
-  soundScorsese.pause();
-  soundScorsese.currentTime = 0;
-}
-
-hoverScorsese.onmousedown = function(){
-  	hoverScorsese.style.display = "none";
-  	staticScorsese.style.display = "none";
-  	clickScorsese.style.display = "block";
-  	hoverPaper.style.display = "none";
-  	staticPaper.style.display = "block";
-  	clickPaper.style.display = "none";
-  	hoverRock.style.display = "none";
-  	staticRock.style.display = "block";
-  	clickRock.style.display = "none";
-	userChoice = 3
-
-		let compChoice = Math.floor(Math.random() * 3) + 1;
-		
-			if (compChoice = 1) {
-				console.log("Comp chose rock - you lose")
-				compRock.style.display = "block";
-				compPaper.style.display = "none";
-				compScorsese.style.display = "none";
-				compScore++;
-				computerScoreCount.innerHTML = compScore;
-				console.log(`${compScore}`);
-				winText.style.display = "none";
-				lossText.style.display = "block";
-				drawText.style.display = "none";
-
-			} else if (compChoice = 2) {
-				console.log("Comp chose paper - you win")
-				compRock.style.display = "none";
-				compPaper.style.display = "block";
-				compScorsese.style.display = "none";
-				playerScore++;
-				playerScoreCount.innerHTML = playerScore;
-				console.log(`${playerScore}`);
-				winText.style.display = "block";
-				lossText.style.display = "none";
-				drawText.style.display = "none";
-
-			} else if (compChoice = 3) {
-				console.log("Comp chose Scorsese - you tie")
-				compRock.style.display = "none";
-				compPaper.style.display = "none";
-				compScorsese.style.display = "block";
-				ties++;
-				tieScoreCount.innerHTML = ties;
-				console.log(`${ties}`);
-				winText.style.display = "none";
-				lossText.style.display = "none";
-				drawText.style.display = "block";
-			}
-	}
-
-
-// Paper Event Listeners
-
-const staticPaper = document.getElementById("paper-static"), hoverPaper = document.getElementById("paper-hover"), clickPaper = document.getElementById("paper-click");
-const hoverPaperSound = document.getElementById("paper-hover-sound")
-
-staticPaper.onmouseover = function(){
-  hoverPaper.style.display = "block";
-  staticPaper.style.display = "none";
-}
-
-hoverPaper.onmouseover = function(){
-  hoverPaper.style.display = "block";
-  staticPaper.style.display = "none";
-  hoverPaperSound.play();
-}
-
-staticPaper.onmouseout = function(){
-  hoverPaper.style.display = "none";
-  staticPaper.style.display = "block";
-}
-
-hoverPaper.onmouseout = function(){
-  hoverPaper.style.display = "none";
-  staticPaper.style.display = "block";
-  hoverPaperSound.pause();
-  hoverPaperSound.currentTime = 0;
-}
-
-hoverPaper.onmousedown = function(){
-  hoverPaper.style.display = "none";
-  staticPaper.style.display = "none";
-  clickPaper.style.display = "block";
-  hoverRock.style.display = "none";
-  staticRock.style.display = "block";
-  clickRock.style.display = "none";
-  hoverScorsese.style.display = "none";
-  staticScorsese.style.display = "block";
-  clickScorsese.style.display = "none";
-  userChoice = 2
-		
-		let compChoice = Math.floor(Math.random() * 3) + 1;
-			if (compChoice == 1) {
-				console.log("Comp chose rock - you win")
-				compRock.style.display = "block";
-				compPaper.style.display = "none";
-				compScorsese.style.display = "none";
-				playerScore++;
-				playerScoreCount.innerHTML = playerScore;
-				console.log(`${playerScore}`);
-				winText.style.display = "block";
-				lossText.style.display = "none";
-				drawText.style.display = "none";
-
-			} else if (compChoice == 2) {
-				console.log("Comp chose paper - you tie")
-				compRock.style.display = "none";
-				compPaper.style.display = "block";
-				compScorsese.style.display = "none";
-				ties++;
-				tieScoreCount.innerHTML = ties;
-				console.log(`${ties}`); 
-				winText.style.display = "none";
-				lossText.style.display = "none";
-				drawText.style.display = "block";
-
-			} else if (compChoice == 3) {
-				console.log("Comp chose Scorsese - you lose")
-				compRock.style.display = "none";
-				compPaper.style.display = "none";
-				compScorsese.style.display = "block";
-				compScore++;
-				computerScoreCount.innerHTML = compScore;
-				console.log(`${compScore}`);
-				winText.style.display = "none";
-				lossText.style.display = "block";
-				drawText.style.display = "none";
-			}
-
-}
-
-
-
-// Rock Event Listeners
-const staticRock = document.getElementById("rock-static"), hoverRock = document.getElementById("rock-hover"), clickRock = document.getElementById("rock-click");
-const hoverRockSound = document.getElementById("rock-hover-sound")
-
-staticRock.onmouseover = function(){
-  hoverRock.style.display = "block";
-  staticRock.style.display = "none";
-}
-
-hoverRock.onmouseover = function(){
-  hoverRock.style.display = "block";
-  staticRock.style.display = "none";
-  hoverRockSound.play();
-}
-
-staticRock.onmouseout = function(){
-  hoverRock.style.display = "none";
-  staticRock.style.display = "block";
-}
-
-hoverRock.onmouseout = function(){
-  hoverRock.style.display = "none";
-  staticRock.style.display = "block";
-  hoverRockSound.pause();
-  hoverRockSound.currentTime = 0;
-}
-
-hoverRock.onmousedown = function(){
-  hoverRock.style.display = "none";
-  staticRock.style.display = "none";
-  clickRock.style.display = "block";
-  hoverPaper.style.display = "none";
-  staticPaper.style.display = "block";
-  clickPaper.style.display = "none";
-  hoverScorsese.style.display = "none";
-  staticScorsese.style.display = "block";
-  clickScorsese.style.display = "none";
-  userChoice = 1
-		let compChoice = Math.floor(Math.random() * 3) + 1;
-			if (compChoice == 1) {
-				console.log("Comp chose rock - you tie")
-				compRock.style.display = "block";
-				compPaper.style.display = "none";
-				compScorsese.style.display = "none";
-				ties++;
-				tieScoreCount.innerHTML = ties;
-				console.log(`${ties}`);
-				winText.style.display = "none";
-				lossText.style.display = "none";
-				drawText.style.display = "block";
-
-			} else if (compChoice == 2) {
-				console.log("Comp chose paper - you lose")
-				compRock.style.display = "none";
-				compPaper.style.display = "block";
-				compScorsese.style.display = "none";
-				compScore++;
-				computerScoreCount.innerHTML = compScore;
-				console.log(`${compScore}`);
-				winText.style.display = "none";
-				lossText.style.display = "block";
-				drawText.style.display = "none";
-
-			} else if (compChoice == 3) {
-				console.log("Comp chose Scorsese - you win")
-				compRock.style.display = "none";
-				compPaper.style.display = "none";
-				compScorsese.style.display = "block";
-				playerScore++;
-				playerScoreCount.innerHTML = playerScore;
-				console.log(`${playerScore}`);
-				winText.style.display = "block";
-				lossText.style.display = "none";
-				drawText.style.display = "none";
-
-			}
-}
-
-
-
-
-</script>
-
-
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+    <link rel="preconnect" href="https://fonts.gstatic.com"></link>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet"></link>
+    <link rel="stylesheet" href="PortfolioSiteCSS.css"></link>
+    <button id="scrollToTopBtn" title="Go to top">BACK TO TOP</button>
+    <script src="PortfolioSiteJS.js"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+  </head>
+  <body id="body">
+    <div id="navbar">
+      <a class="navitem" href="#about-me-section">ABOUT ME</a>
+      <p>|</p>
+      <a class="navitem" href="#mywork">MY WORK</a>
+      <p>|</p>
+      <a class="navitem" href="#contactme">TALK TO ME</a>
+      <p>|</p>
+      <a class="navitem" href="FrischResume2021.pdf" download target="_blank">RESUME</a>
+    </div>
+
+    <div id="headerwrapper">
+      <img class="headerimg" src="https://i.ibb.co/12x5t4d/Web-Header-Blue.png" border="0" />
+      <!-- green header      
+      <img class="headerimg" src="https://i.ibb.co/K92kBJ2/Web-Header.png" border="0" />
+       -->      
+      <div class="centeredheadertitle">Alexis Frisch</div>
+      <div class="centeredheadersubtitle">Graphic Design | UX/UI | Web Development</div>
+    </div>
+
+    <div id="bodydiv">
+      <div id="about-me-section" class="about-me-img-flip">
+        <a href="https://www.linkedin.com/in/alexis-frisch/" target="_blank">
+         <div class="about-me-img-container">
+           <img src="Assets/Lexie-Professional-Square-Image.png" alt="Lexie-Professional-Square-Image" border="0">
+            <div class="about-me-linkedin">
+               <span class="font-awesome-icons linkedin"></span>
+            </div> <!--/.about-me-linkedin-->
+          </div> <!--/.about-me-img-container-->
+        </a>
+      </div> <!--/.about-me-img-flip-->
+      
+      <div class="about-me-words-outter">
+        <div class="about-me-words-inner">
+          <p>Welcome to my portfolio.</p>
+          <p>I’m a graphic designer with a focus on maximizing usability and crafting the user experience.</p>
+          <p>I'm also recreationally passionate about special effects makeup and animatronic creatures, my two dogs and my wife, and all things Halloween.</p>
+        </div>  
+      </div>
+      
+  <div id="mywork">    
+        <div id="work-container-title">
+          <h1> Completed Works </h1>
+        </div>
+
+
+        <div id="work-container-title">
+          <p> Animation | Video Design </p></br>
+        </div>
+        
+        <div id="main-work-container">
+           <div id="overlay" class="work-img-container">
+  <!--            <div class="work-container-text">
+                <h3>CHECK IT OUT</h3>
+             </div>   -->
+
+                <video class="myVideos" id="myVid" poster="Assets/Video2Poster.png" src="Assets/SimplyHomeCOVIDResponse.mp4" title="SimplyHome COVID Response - Animated Video">
+            </div> <!--/.work-img-container-->
+            <div class="content-container">
+              <p class="title">SimplyHome COVID Response - Animated Video</p>
+              <ul class="list">
+                <li class="active-design">Design</li>
+                <li class="active-front-end">Front-End</li>
+                <li class="back-end">Back-End</li>
+              </ul>
+              <p class="sub-title">The door is opening! how exciting oh, it's you, meh litter kitter kitty litty little kitten big roar roar feed me yet human is washing you why halp oh the horror flee scratch hiss bite.</p>
+            </div><!--/.content-->
+        </div> <!--/#main-work-container-->
+
+        <div id="main-work-container">
+           <div id="overlay" class="work-img-container">
+  <!--            <div class="work-container-text">
+                <h3>CHECK IT OUT</h3>
+             </div>   -->
+
+                <video class="myVideos" id="myVid" poster="Assets/Video1Poster.png" src="Assets/SimplyHomenewindependancetool.mp4" title="SimplyHome Launches New Technology to Support Independence - Animated Video">
+            </div> <!--/.work-img-container-->
+            <div class="content-container">
+              <p class="title">SimplyHome Launches New Technology to Support Independence - Animated Video</p>
+              <ul class="list">
+                <li class="active-design">Design</li>
+                <li class="active-front-end">Front-End</li>
+                <li class="back-end">Back-End</li>
+              </ul>
+              <p class="sub-title">The door is opening! how exciting oh, it's you, meh litter kitter kitty litty little kitten big roar roar feed me yet human is washing you why halp oh the horror flee scratch hiss bite.</p>
+            </div><!--/.content-->
+        </div> <!--/#main-work-container-->
+
+         <div id="main-work-container">
+           <div id="overlay" class="work-img-container">
+  <!--            <div class="work-container-text">
+                <h3>CHECK IT OUT</h3>
+             </div>   -->
+                <img class="myImages" id="myImg" src="https://www.k9web.com/wp-content/uploads/2020/12/little-dalmatian-sitting-in-the-couch-780x858.jpg" alt="alt text for image">
+            </div> <!--/.work-img-container-->
+            <div class="content-container">
+              <p class="title">This is a title </p>
+              <ul class="list">
+                <li class="design">Design</li>
+                <li class="active-front-end">Front-End</li>
+                <li class="back-end">Back-End</li>
+              </ul>
+              <p class="sub-title">The door is opening! how exciting oh, it's you, meh litter kitter kitty litty little kitten big roar roar feed me yet human is washing you why halp oh the horror flee scratch hiss bite.</p>
+            </div><!--/.content-->
+        </div> <!--/#main-work-container-->
+
+   <div id="main-work-container">
+           <div id="overlay" class="work-img-container">
+  <!--            <div class="work-container-text">
+                <h3>CHECK IT OUT</h3>
+             </div>   -->
+                <img class="myImages" id="myImg" src="https://www.k9web.com/wp-content/uploads/2020/12/little-dalmatian-sitting-in-the-couch-780x858.jpg" alt="alt text for image">
+            </div> <!--/.work-img-container-->
+            <div class="content-container">
+              <p class="title">This is a title </p>
+              <ul class="list">
+                <li class="design">Design</li>
+                <li class="active-front-end">Front-End</li>
+                <li class="back-end">Back-End</li>
+              </ul>
+              <p class="sub-title">The door is opening! how exciting oh, it's you, meh litter kitter kitty litty little kitten big roar roar feed me yet human is washing you why halp oh the horror flee scratch hiss bite.</p>
+            </div><!--/.content-->
+        </div> <!--/#main-work-container-->
+
+
+   <div id="main-work-container">
+           <div id="overlay" class="work-img-container">
+  <!--            <div class="work-container-text">
+                <h3>CHECK IT OUT</h3>
+             </div>  --> 
+                <img class="myImages" id="myImg" src="https://www.k9web.com/wp-content/uploads/2020/12/little-dalmatian-sitting-in-the-couch-780x858.jpg" alt="alt text for image">
+            </div> <!--/.work-img-container-->
+            <div class="content-container">
+              <p class="title">This is a title </p>
+              <ul class="list">
+                <li class="design">Design</li>
+                <li class="active-front-end">Front-End</li>
+                <li class="back-end">Back-End</li>
+              </ul>
+              <p class="sub-title">The door is opening! how exciting oh, it's you, meh litter kitter kitty litty little kitten big roar roar feed me yet human is washing you why halp oh the horror flee scratch hiss bite.</p>
+            </div><!--/.content-->
+        </div> <!--/#main-work-container-->
+  </div>
+      </div> <!--/bodydiv-->
+    </body>
+
+    <div id="myImgModal" class="modal">
+      <span class="imgclose">&times;</span>
+      <img class="modal-content" id="img01">
+      <div id="imgCaption"></div>
+    </div>
+
+    <div id="myVideoModal" class="modal">
+      <span class="videoclose">&times;</span>
+      <video class="modal-content" id="vid01" width="320" height="240" controls> </video>
+      <div id="videoCaption"></div>
+    </div>
+    <div id="contactme">
+      <div id="footerwrapper">
+        <!--  Green Footer     
+        <img src="https://i.ibb.co/m6b3Rvt/Web-Footer.png" class="footerimg" border="0" />
+         -->
+        <img src="https://i.ibb.co/g36VSvC/Web-Footer-Blue.png" class="footerimg" border="0" />
+        <div class="centeredfootertitle">Talk To Me</div>
+        <div class="social ">
+            <ul>
+              <a href="https://www.linkedin.com/in/alexis-frisch/"><li class="linkedin"></li></a>
+              <a href="https://github.com/Alexisnfrisch"><li class="github"></li></a>
+              <a href="mailto: alexisnfrisch@gmail.com"><li class="email"></li></a>
+<!--               <a href="#"><li class="dribble"></li></a>
+ -->            </ul>
+        </div>  
+      </div>
+    </div>  
 </html>
