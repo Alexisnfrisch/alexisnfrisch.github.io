@@ -606,6 +606,13 @@ li.active-design,li.active-front-end,li.active-back-end {
     text-align: center;
 }
 
+.centeredfootercopyright {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1em;
+}
 
 @-webkit-keyframes transform {
   from {
