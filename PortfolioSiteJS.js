@@ -109,9 +109,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
 
+    
     var videospan = document.getElementsByClassName("videoclose")[0];
-
+    var videotopause = document.getElementById("vid01");
+    
     videospan.onclick = function() {
+      videotopause.pause();
       navbar.style.display = "block";
       docbody.style.overflow = 'auto';
       videomodal.style.display = "none";
