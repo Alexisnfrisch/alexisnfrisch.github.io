@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var imagespan = document.getElementsByClassName("imgclose")[0];
 
     imagespan.onclick = function() {
-      navbar.style.display = "block";
+      navbar.style.display = "flex";
       docbody.style.overflow = 'auto';
       imgmodal.style.display = "none";
       backtotopbutton.style.display = "block";
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     videospan.onclick = function() {
       videotopause.pause();
-      navbar.style.display = "block";
+      navbar.style.display = "flex";
       docbody.style.overflow = 'auto';
       videomodal.style.display = "none";
       backtotopbutton.style.display = "block";
