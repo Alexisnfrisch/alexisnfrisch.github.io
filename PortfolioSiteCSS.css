@@ -386,7 +386,6 @@ p {
   min-width: 200px;
   min-height: 200px;
   border-radius: 50%;
-  z-index: -1;
   opacity: .8;
 }
 
