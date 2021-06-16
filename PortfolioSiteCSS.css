@@ -52,8 +52,10 @@ p {
   z-index: 100;
   overflow: hidden;
   background-color: var(--accentdark);
-  text-align: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  justify-content: center;
+  justify-items: center;
 }
 
 /* Navbar links */
@@ -69,10 +71,9 @@ p {
 }
 
 #navbar p {
-  display: inline-block;
   color: var(--font);
-  text-align: center;
-  padding: 0px;
+  padding-top: 14px;
+  padding-bottom: 14px;
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 0px;
@@ -126,6 +127,8 @@ p {
   align-items: center;
   justify-content: center;
   width:100%;
+  transform: translateZ(0)
+
 }
 
 .about-me-img-flip .about-me-img-container {
@@ -138,6 +141,8 @@ p {
     overflow: hidden;
     border-radius: 50%;
     cursor:pointer;
+    transform: translateZ(0);
+
 }
 
 .about-me-img-flip .about-me-img-container img {
@@ -153,7 +158,9 @@ p {
     z-index:9;
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
-    box-sizing:border-box
+    box-sizing:border-box;
+    transform: translateZ(0);
+
 }
 
 .about-me-linkedin .linkedin:before {
@@ -177,12 +184,15 @@ p {
     background-color: var(--profileflip);
     text-align:center;
     backface-visibility:hidden;
+    -webkit-backface-visibility: hidden;
     -webkit-transform:rotateY(-180deg);
     -moz-transform:rotateY(-180deg);
     transform:rotateY(-180deg);
     -webkit-transition:all .5s;
     -moz-transition:all .5s;
     transition:all .5s
+    transform: translateZ(0);
+
 }
 
 .about-me-img-flip .about-me-img-container .about-me-linkedin:active {
@@ -191,15 +201,19 @@ p {
 
 .about-me-img-flip .about-me-img-container img {
     backface-visibility:hidden;
+    -webkit-backface-visibility: hidden;
     -webkit-transition:all .5s;
     -moz-transition:all .5s;
     transition:all .5s
+    transform: translateZ(0);
+
 }
 
 .about-me-img-flip .about-me-img-container:hover img {
     -webkit-transform:rotateY(180deg);
     -moz-transform:rotateY(180deg);
     transform:rotateY(180deg);
+    transform: translateZ(0);
   opacity:0;
 }
 
@@ -330,6 +344,7 @@ p {
 .work-img-container{
     margin-top: 20px;
     margin-bottom: 20px;
+    border-radius: 50%;
 }
 
 .work-img-container #insideimg {
@@ -349,7 +364,6 @@ p {
     height: 350%;
     width: auto;
     transform: translate(-5%, -57%) rotate(10deg);
-    opacity: .8;
 }
 
 .work-img-container .NCBWG img {
@@ -357,7 +371,6 @@ p {
     height: 102%;
     width: auto;
     transform: translate(-47%);
-    opacity: .8;
 }
 
 .work-img-container .SHQuickStart img {
@@ -365,7 +378,6 @@ p {
     height: 580%;
     width: auto;
     transform: translate(-26%, -.5%);
-    opacity: .8;
 }
 
 .work-img-container .SHProductGraphics img {
@@ -373,7 +385,6 @@ p {
     height: 460%;
     width: auto;
     transform: translate(-5%);
-    opacity: .8;
 }
 
 .lastWorkDiv{
@@ -386,7 +397,6 @@ p {
   min-width: 200px;
   min-height: 200px;
   border-radius: 50%;
-  opacity: .8;
 }
 
 .work-container-text{
@@ -416,19 +426,15 @@ p {
   cursor:pointer;
 }*/
 
-.work-img-container #insideimg:hover{
+.work-img-container:hover{
+  cursor:pointer;
   box-shadow:
     0 0 10px #fff;            /* outer white */
-}
+    }
 
-.work-img-container #insideimg img:hover{
-   cursor:pointer;
-   opacity: 1;
-}
 
 .work-img-container video:hover{
    cursor:pointer;
-   opacity: 1;
    box-shadow:
       0 0 10px #fff;            /* outer white */
 }
@@ -549,7 +555,7 @@ li.active-design,li.active-front-end,li.active-back-end {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 5em;
+  font-size: 3em;
 }
 
 .social{
@@ -841,12 +847,22 @@ li.active-design,li.active-front-end,li.active-back-end {
   #skillsLine1 img{
     width: 57px;
     height: auto;
+    padding-left: 2px;
+    padding-right: 2px;
   }
 
   #skillsLine2 img, #skillsLine3 img{
     width: 50px;
     height: auto;
     padding-top: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  #foodimages img{
+    padding: 5px 10px 50px 10px;
+    width: auto;
+    margin-top: auto;;
   }
 
   .content-container {
@@ -873,9 +889,9 @@ li.active-design,li.active-front-end,li.active-back-end {
     line-height: 1.5em;
   } 
   
-  #work-container-title {
-    font-size: 15px;
-  }
+  #work-container-title p,h1{
+    font-size: 25px;
+  }  
   
   .about-me-words-inner {
   width: 80%;
@@ -884,6 +900,14 @@ li.active-design,li.active-front-end,li.active-back-end {
   justify-content: center;
   font-size: 20px;
   }
+
+  .centeredfootertitle{
+    top:  25%;
+  }
+
+  .social{
+    top: 65%;
+  }
 }
 
 @media only screen and (max-width: 700px) {
@@ -891,3 +915,20 @@ li.active-design,li.active-front-end,li.active-back-end {
     width: 100%;
   }
 }
+
+@media (max-width: 400px) {
+  #navbar a {
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: auto;
+    padding-bottom: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-decoration: none;
+    font-size: 1.5em;
+  }
+
+  .centeredheadertitle{
+    top: 52%;
+  }
+}  
