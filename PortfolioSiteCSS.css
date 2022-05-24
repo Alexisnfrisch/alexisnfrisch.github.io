@@ -47,6 +47,21 @@ p {
   padding: 0px;
 }
 
+/* unvisited link */
+a:link {
+  color: #43ABC9;
+}
+
+/* visited link */
+a:visited {
+  color: #B5C689;
+}
+
+/* mouse over link */
+a:hover {
+  color: #1287A8;
+}
+
 /* Style the navbar */
 #navbar {
   z-index: 100;
