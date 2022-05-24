@@ -48,17 +48,17 @@ p {
 }
 
 /* unvisited link */
-a:link {
+.about-me-words-inner a:link {
   color: #43ABC9;
 }
 
 /* visited link */
-a:visited {
+.about-me-words-inner a:visited {
   color: #B5C689;
 }
 
 /* mouse over link */
-a:hover {
+.about-me-words-inner a:hover {
   color: #1287A8;
 }
 
